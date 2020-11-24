@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.Create/Object.defineProperties</title>
+</head>
+<body>
+<script type="text/javascript">
+  /*ES5给Object扩展了一些静态方法，常用的2个
+  1、Object。create(prototype,[descriptors])
+  * 作用：以指定对象为原型创建新的对象
+  * 为新的对象指定新的属性，并对属性进行描述
+  * value:指定值
+  * writable:标识当前属性值是否可以修改的，默认为false
+  * configurable:标识当前属性是否可以删除，默认为false
+  * enumerable:标识当前属性是否用 for in 枚举 默认是false*/
+
+
+
+ /*-------------Object.Create的语用法
+
+  var obj={
+      name:'lxc',
+      showname:function () {
+          console.log(this.name);
+
+      }
+  };
+
+  var obj2=Object.create(obj,{
+      sex:{
+          value:'男',
+          writable:true,
+          configurable:true,
+          enumerable:true
+      },
+      age:{
+          value:12,
+          enumerable:true
+
+      }
+
+  });
+  console.log(obj2);
+  obj2.sex='女';
+    console.log(obj2);//发现性别可以修改了
+
+ /!* setTimeout(function () {
+      delete obj2.sex;
+  },5000);*!/
+  //
+    console.log(obj2);//发现sex属性可以被删除了，因为configure属性是true
+
+  for (var i in obj2){
+      /!*for in 枚举对象的时候，除了可以枚举自身属性之外，还可以枚举原型身上的属性*!/
+      if(obj2.hasOwnProperty(i)){ console.log(i);}//是自己的属性就打印出来，不是就不要打印啦
+
+
+
+  }*/
+
+  //Object.defineProperties()方法直接在一个对象上定义新属性或修改现有属性，并返回该对象
+   //Object.defineProperties(obj,props)
+
+   /* var obj={
+        name:'csh',
+        age:13
+    };
+    Object.defineProperties(obj,{
+        //配置对象
+        sex:{
+            configurable:true,
+
+
+            get:function () {//提供扩展属性的值
+
+                return  sex;
+
+
+            },
+            set:function (msg) {
+                //console.log(msg);
+             sex= msg;
+
+               // console.log(msg);
+             /!*   this.sex=msg;
+              return msg;*!/
+                //set方法是用来监视扩展属性的，
+                // 一旦扩展属性被修改set就会别调用，并且会自动将修改之后的属性值自动作为参数传入函数set内部
+                //这样子修改就必须通过该函数，所以安全，而且该函数也时刻监督着属性的修改
+
+
+            }
+
+        }
+
+    });
+  obj.sex=123;
+    console.log(obj.sex);//当要获取扩展属性的值的时候，就会调用get
+
+    obj.sex='lxc';
+  console.log(obj.sex);
+
+  */
+
+
+  //对象本身的两个方法
+    //get propertyName(){}用来得到当前属性值的回调函数
+    //set propertyName(){}用来覆盖当前属性值变化的回调函数
+
+    var  obj={
+
+        get name(){
+            return 'lxc'
+        }
+    }
+</script>
+</body>
+</html>

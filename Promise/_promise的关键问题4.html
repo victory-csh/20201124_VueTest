@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*promise错误穿透？
+    * （1）当使用promise的then链式调用时，可以在最后指定失败的回调（catch）
+    * （2）前面任何操作出了错误，都会传到最后失败的回调中处理
+    * 中断promise链
+    * （1）当使用promise的then链式调用时，在中间中断，不再调用后面的回调函数
+    * （2）办法：在回调函数中返回一个pendding状态的promise对象*/
+
+    new Promise((resolve,reject)=>{
+
+        //resolve(1)
+        reject(2)
+
+    }).then(value=>{console.log(onResolve1(),value)}//不写resaon,系统已经默认写了reason=>{throw reason}
+    ).then(value=>console.log(onResolve2(),value),
+        //   reason=> Promise.reject(reason)
+    ).then(value=>console.log(onResolve3(),value)
+    ).catch(reason=>{
+        console.log('onRejected()',reason);
+        /*throw reason*/
+        return new Promise(()=>{})//返回一个pending状态的promise实现了中断promise连接，无法在then下去了
+
+    }).then(
+        value=>console.log('onResolve4()',value),
+        reason=>console.log('onRejected2()',reason)//该then是无法执行的，因为以上已实现了promise中断了
+    )
+
+
+</script>
+</body>
+</html>

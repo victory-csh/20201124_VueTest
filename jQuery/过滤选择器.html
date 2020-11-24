@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤选择器</title>
+    <!--需求：
+    1、选中第一个div
+    2、选择最后一个class为box的元素
+    3、选择所有class属性不为box的div
+    4、 选择第二个和第三个li元素
+    5、选择内容为BBBB的li
+    6、选择隐藏的li
+    7、选择有title属性的li元素
+    8、选择所有属性title为hello的li元素-->
+</head>
+<body>
+<div id="div1" class="box">class 为box的div1</div>
+<div id="div2" class="box">class 为box的div2</div>
+<div id="div3">div3</div>
+<span class="box">class为box的span</span>
+<br/>
+
+<ul>
+    <li>AAAAAAA</li>
+    <li title="hello">BBBBBBB</li>
+    <li class="box">CCCCCCCC</li>
+    <li title="hello">DDDDDDDDD</li>
+    <li title="two">BBBBBBB</li>
+    <li style="display: none">我本来是隐藏的</li>
+
+</ul>
+
+</body>
+<script type="text/javascript" src="../bootstrap/jquery-2.0.0.min.js"></script>
+
+<script type="text/javascript">
+/*//    1、选中第一个div
+    $('div:first').css('background','red');*/
+
+
+/* // 2、选择最后一个class为box的元素
+    $('.box:last').css('background','red');*///先选出大集合所有的有box的，在通过last筛掉$
+
+/*// 3、选择所有class属性不为box的div
+
+$('div:not(.box)').css('background','red');*/
+
+/*//    4、 选择第二个和第三个li元素
+ $('li:gt(0):lt(2)').css('background','pink');//li:gt(0),截一次后就会重新排序的，比如234，2不要了，那么3的下标就是0*/
+
+/*
+//5、选择内容为BBBB的li
+    $('li:contains(B)').css('background','pink');
+*/
+
+/*//    6、选择隐藏的li
+$('li:hidden').show(1000);*/
+
+/*//  7、选择有title属性的li元素
+    $('li[title]').css('background','pink');*/
+
+/*//  8、选择所有属性title为hello的li元素
+  $('li[title=hello]').css('background','pink');*/
+
+
+//9、选择所有有title且title属性不为hello的li元素
+$('li[title][title!=hello]').css('background','green');//若写成$('li[title!=hello]').css('background','green');则是title不为hello和没有title的都可以被选中
+    //写成$('li[title][title!=hello]').css('background','green');是先筛选出有title的，然后再这些儿有title的li标签里筛选出title不为hello的li标签
+
+</script>
+
+</html>

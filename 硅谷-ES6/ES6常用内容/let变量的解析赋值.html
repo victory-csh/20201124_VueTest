@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量的 解构-赋值</title>
+    <!--解构：解析目标对象的结构
+    赋值-->
+</head>
+<body>
+
+<script type="text/javascript">
+
+   //之前对对象里的属性赋值是通过点
+    let  obj={username:'csh',age:24};
+    let  username=obj.username;
+    let age=obj.age;
+
+ /*1、对象的结构赋值*/
+
+    //若用let就可以一次性给变量赋值了
+    console.log('----------ES6-------------------')
+    let obj2={name:'lxc',year:1997};//解析obj2(目标对象)的结构
+    let {name,year}=obj2;//赋值：从目标对象中的取出对应的数据赋值给某一个变量--解构的目标是对象，则变量必须加上大括号
+   //以上也可以写成这样：let{age}=obj2;就是只赋值age这个属性
+   //若为let{sex}=obj2；会出现undefined
+    console.log(name,year);
+
+
+    /*2、数组的结构赋值*/
+    console.log('----------数组的结构赋值------------------------')
+   let  arr=[4,5,6];
+    let [num1,c]=arr;//由于num1=0,c=1,若就想取6则let[,,e]=arr
+
+    console.log(num1,c);//4、5
+/*3、解构赋值的应用*/
+console.log('---------------解构赋值的应用-------------------')
+    function fun({username,age}) {
+
+    console.log(username,age)
+    /*console.log(obj.username);
+    console.log(obj.age);*/
+
+    }
+   fun(obj);
+
+</script>
+</body>
+</html>

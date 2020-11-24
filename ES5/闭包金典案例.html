@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包金典案例</title>
+</head>
+<body>
+
+<script>
+/*    var name="the window";
+    var object={
+        name:"my object",
+        getNameFunc:function () {
+            return function () {
+                return this.name;
+
+            }
+        }
+    };
+    console.log(object.getNameFunc()());//------得到thewindow*/
+var name="the window";
+var object={
+    name:"my object",
+    getNameFunc:function () {
+        var that=this;
+        return function () {
+            return that.name;
+
+        }
+    }
+};
+console.log(object.getNameFunc()());//------得到my object,因为that保存了谁调用getNameFunc
+                                    // */ 发生闭包，因为访问了that，是getNameFunc函数中的
+</script>
+</body>
+</html>

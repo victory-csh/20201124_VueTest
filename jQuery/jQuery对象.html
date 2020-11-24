@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery对象</title>
+    <!--需求1：统计一共有多少个按钮
+    需求2：取出第2个button的文本
+    需求3：输出所有标签的文本
+    需求4：输出’测试三‘按钮是所有按钮中的第几个-->
+</head>
+<body>
+<div>
+    <div>
+<button>测试一</button>
+<button>测试二</button>
+<button id="btn3">测试三</button>
+<button>测试四</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../bootstrap/jquery-2.0.0.min.js"></script>
+
+<script type="text/javascript">
+  //需求1：统计一共有多少个按钮
+    let $btns=$('button');
+    console.log($btns.length);//$btns.size也可以的
+ //  需求2：取出第2个button的文本
+    console.log($btns[1].innerHTML);//$btns这样子即是jQuery对象，多少加了[1],就变回普通的DOM对象，所以用不了jquery的内置方法 html（）！
+ // 需求3：输出所有标签的文本
+    $btns.each(function () {
+       console.log(this.innerHTML);//一个一个拿出来的时候就是DOM对象了而不是jQuery对象了
+
+
+    //    需求4：输出’测试三‘按钮是所有按钮中的第几个-
+        console.log($('#btn3').index());//返回的是索引值,index查的是它在兄弟里面拍第几
+
+
+    })
+</script>
+
+</html>

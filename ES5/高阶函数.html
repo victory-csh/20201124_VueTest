@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>高阶函数</title>
+</head>
+<body>
+
+<script>
+
+    //函数作为参数、
+  /*  function eat(fn) {
+
+        setInterval(function () {
+            console.log('吃晚饭');
+            fn();
+
+        },2000);//----吃完晚饭去唱歌
+    }
+    eat(function () {
+        console.log('去唱歌')
+    });
+*/
+
+
+   /* arr.sort(function (a,b) {
+        return a-b;
+    });//-----从小到大*/
+
+    Array.prototype.mysort=function (fn1) {
+        for (var i; i<this.length -1;i++){
+            var inSort=true;//
+            for (var j=0;j<this.length-i-1;j++){
+                if (fn1(this[j],this[j+1])>0){//----大于零，说明用户需要从小到大的排序，
+                                              //但是如何大于零，是有调用者决定的，反正我内部知道大于零
+
+                    inSort=false;
+                    var tmp=this[j];
+                    this[j]=this[j+1];
+                    this[j+1]=tmp;
+
+
+
+                }
+            }
+            if (inSort){break;}
+
+        }
+
+    };
+    var arr=[35,1,6,20];
+    arr.mysort(function (a,b) {
+    return b-a;//第一个数比第二个数大的时候交换顺序，若b-a就是递减
+
+    });
+    console.log(arr);
+    // 函数作为返回值的时候
+
+
+</script>
+</body>
+</html>

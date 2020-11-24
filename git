@@ -1,0 +1,36 @@
+mkdir创建一个文件
+敲命令：git init
+vi a.txt
+git add a.txt----该命令是把工作区的内容复制到暂存区，用命令：git status，查看到 new file:a.txt，说明暂存区已经创建了!
+  git add *  -----该命令是把所有的工作区都复制到暂存区那里
+git config --global core.autocrlf false----该命令是不要自动所以更换核心的回车配置，除非我同意
+git commmit -m 'this is my first commmit'-----该命令是把所有的工作区提交到版本区里面了，敲完这条命令可以查看：git status,看见：create mode 100644 a.txt，说明版本区已经创建了！
+git diff查看暂存区与 工作区 的区别
+git diff-cached -----比较版本区与暂存区的区别
+git diff master----比较版本区与工作区
+git log 显示从最近到最远的所有提交日志
+gir reflog 显示每次提交（commit）的commit id
+
+版本回退+版本穿梭+版本撤销
+   git reset --hard HEAD^ 版本回退（回退一次提交） git reset --hard HEAD^^回退两次，最多回退两次
+   git reset --hard 版本号 回退到指定版本号的commit id版本，可以通过gir reflog查到版本号的
+   
+   git reset HEAD 用版本库中的文件去替换暂存区的全部文件
+   git checked -x.txt 用暂存区指定文件去替换工作区的指定文件（危险）
+   git checked HEAD x.txt 用版本中的文件替换暂存区和工作区的文件（危险）
+   git rm --cached x.txt 从暂存区删除文件
+
+   删除文件： git rm x.txt  这种删除已直接删除的区别：直接删除要我们自己告诉暂存和版本区你删除了该文件，而用它提供的命令删除可以不用告诉，一键下去就是删除了工作区以及暂存区
+
+
+   删除文件夹：git rm -r xxxx
+
+   分支：在主分支上创建了新的分支，是把主分支的内容复制到该新的分支上的，并且当新的分支修改了该文件，不会影响主分支的文件的
+    1、git checkout -b dev 创建dev(开发)分支，并切换到dev分支，站在master那里
+    2、git branch 查看当前分支
+    3、git checkout master 切换分支到主分支上
+    4、git merge dev 合并dev分支到当前分支，在master视图下合并Dev
+    5、git branch -d dev 删除指定分支
+    6、git diff branch1 branch2 显示两个分支之间所有有差异的文件的详细差异
+    7、git diff branch1 branch2 -stat 显示出两个分支之间所有有差异的文件列表
+    8、git diff branch1 branch2 xxx 显示指定文件的详细差异

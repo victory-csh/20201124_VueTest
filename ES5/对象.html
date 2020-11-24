@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象属性的设置</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+/*
+    var obj={};
+    obj.name='lxc';
+    obj['conent-type']='application';
+    console.log(obj['content-type']);
+
+    var  msg='age';
+    obj[msg]=42;
+    console.log(obj);*/
+
+/*var  a={};
+
+var obj1={n:1};
+var obj2={m:2};
+
+a[obj1]=3;//当一个对象填进另一个对象是，该对象会被toString转化为[object Object],不管是obj1还是obj2都是要用到，不管原来对象的名字的
+
+a[obj2]=6;
+
+
+console.log(a);*/
+
+
+//---构造函数创建对象
+    var  obj =new  Object();
+    obj.name='lxc';
+    obj.age=43;
+//----对象字面量
+    var obj1={name:'lxc'};
+    var obj2={name:'hhh'};
+    //---工厂模式
+    function Person(name,age) {
+        return{
+            name:name,
+            age:age
+
+        }
+
+    }
+    var person1=Person('lxc',12);
+    var person2=Person('csh',13);//并非是Person的实例对象
+console.log(person1  instanceof Person);
+
+
+    //---自定义构造函数模式
+    function Animal(name,age) {
+        this.name=name;
+        this.age=age;
+        this.showName=function () {//--导致每生成一个实例对象，它身上都有该方法
+            console.log(this.name);
+
+        }
+
+    }
+
+    var animal1=new Animal('lxc',43);
+   animal1.showName();//
+    var animal2=new Animal('csh',38);
+    console.log(animal1  instanceof Person);
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的原型继承</title>
+</head>
+<body>
+<script>
+    /*比如学生对象和老师对象都是有姓名年龄性别
+    * 都是学生有成绩，老师有工资*/
+    /*通过构造函数设置一个对象，相当于类*/
+    /*把老师和学生抽象成人这个类---父类,把子类型中共有的成员提取到父类型中*/
+
+
+    function Person() {
+        this.name='lxc';
+        this.age=18;
+        this.sex='女';
+
+    }
+    /*子类*/
+    function Student() {
+
+        this.score=100;
+        function sayhi() {
+            console.log('hello');
+
+        }
+
+    }
+    /*子类*/
+    function Teacher() {
+
+        this.salary=10000;
+
+    }
+   //Student.prototype=new Person();
+    //Student.prototype.constructor=Student;
+    var s1=new Student();
+    //console.log(s1.prototype);
+    //console.log(s1.constructor);
+    console.dir(s1);/*会发现，构造函数是Student，而__proto__是Person；
+                         -------相当于Student继承（原型继承）了Person对象的成员了
+                         缺点就是无法改变继承过来的person的各个属性的值，
+                         在  Student.prototype=new Person();这里传一次就没了*/
+
+ /* var   p2=new   Person();
+  console.log(p2);
+*/
+
+</script>
+</body>
+</html>

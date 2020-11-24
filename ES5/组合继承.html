@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组合继承</title>
+</head>
+<body>
+<script>
+ /*组合继承解决借用构造函数继承的缺陷------解决：借用构造函数+原型继承*/
+    function Person(name,age,sex) {
+        this.name=name;
+        this.age=age;
+        this.sex=sex;
+
+
+    }
+    Person.prototype.sayhi=function () {
+        console.log('大家好，我是'+this.name);
+
+    };
+    function  Student(name,age,sex,score) {
+        /*借用构造函数*/
+        Person.call(this,name,age,sex);
+        this.score=score;
+    }
+
+
+    /*Student.prototype= Person.prototype;//只继承Person里的prototype，因为里面有方法
+    Student.prototype.constructor=Student;
+
+    var s=new Student('lxc',22,'girl',500);
+    s.sayhi();
+    /!*学生特有的方法，exam*!/
+    Student.prototype.exam=function () {
+        console.log('考试');
+    }
+    /!*但是打印出来Person，却会有exam方法*!/
+    var p=new Person('lx',18,'男');
+    console.log(p);*/
+    function Teacher(name,age,sex,salary) {
+       /* /!*借用构造函数*!/*/
+        Person.call(this,name,age,sex);
+        this.salary=salary;
+
+    }
+    Teacher.prototype=new Person;
+    Teacher.prototype.constructor=Teacher;
+    var t1=new Teacher('LXC1',30,'GIRL',10000);
+    console.dir(t1);/*发现老师的原型对象上有EXAM方法
+    是因为有Teacher.prototype=Person.prototype;*/
+    /*由于Teacher.prototype=Person.prototype;
+    *  Student.prototype=Person.prototype;都是指向了一个对象，所以不管老师还是学生还是人
+    *  只要增加了一个方法，其他对象也会有相应的该方法
+    *  写成 Teacher.prototype=new Person;
+    *  问题就解决了*/
+console.log(t1.constructor);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>严格模式</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+'use strict';
+
+//禁止自定义的函数中的this指向window
+function Person(name) {
+    this.name=name;
+
+
+}
+
+new Person('lxc');//若直接Person（'lxc'），那this就是window，无缘无故给window添加了一个name属性，在严格模式下是不行的
+//创建eval 作用域，eval可以解析传入的字符串代码并执行，可以用于服务器端
+    var a=2;
+    eval('var a=4; alert(a)');
+   console.log(a);//在严格模式下eval没有覆盖全局模式下的a，在非严格模式下eval会覆盖a的值
+
+//对象 不能有重名的属性
+var obj={
+    name:'lxc',
+    name:'lxj' //---两个name属性，所以在严格模式下会报错的
+}
+console.log(obj.name);
+
+</script>
+</body>
+</html>

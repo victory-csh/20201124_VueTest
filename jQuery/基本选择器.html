@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--需求：
+    1、选择id为div1的元素
+    2、选择所有的div元素
+    3、选择所有class属性为box的元素
+    4、选择所有div和span元素
+    5、选择所有class属性为box的div元素-->
+    <meta charset="UTF-8">
+    <title>基本选择器</title>
+</head>
+<body>
+
+<div id="div1">div3</div>
+<div id="div2">div3</div>
+<div id="div3">div3</div>
+<span class="box">span(class="box")</span>
+<br>
+
+<ul>
+    <li>AAAAAA</li>
+    <li title="hello">BBBB</li>
+    <li class="box">CCCCC</li>
+    <li  title="hello">DDDDD(title="hello")</li>
+</ul>
+<script type="text/javascript" src="../bootstrap/jquery-2.0.0.min.js"></script>
+
+<script type="text/javascript">
+
+//  1、选择id为div1的元素
+    $('#div1').css('background','pink');
+//2、选择所有的div元素
+    $('div').css('background','green');
+// 3、选择所有class属性为box的元素
+    $('.box').css('background','red');
+//4、选择所有div和span元素
+    $('div,span').css('background','pink');
+// 5、选择所有class属性为box的div元素
+    $('div.box').class('background',blue);
+</script>
+</body>
+</html>

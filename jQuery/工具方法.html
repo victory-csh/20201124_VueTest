@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工具方法</title>
+    <!--1、$.each():遍历数组或对象中的数据
+        2、$.trim():去除字符串两边的空格
+        3、$.type(obj):得到数据的类型
+        4、$.isArray(obj):判断是否是数组
+        5、$.isfunction(obj):判断是否是函数
+        6、$.parseJSON(json):解析json字符串转换为js对象、数组-->
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="../bootstrap/jquery-2.0.0.min.js"></script>
+
+<script type="text/javascript">
+
+    let person={
+
+        name:'tom',
+        age:12
+    };
+    console.log($.type($));//---是function
+    console.log($.type($()));//结果为object
+    console.log($.isFunction($));//true
+    let arr=[1,2,3];
+    console.log($.isArray(arr));//true
+    let json='{"username":"jack","age":12}';
+    let jsonArr='[{"username:""jack","age":12},{"username":"Tom","age":13}]'
+  console.log(json);
+    console.log($.parseJSON(json));//$.parseJSON(json)的返回值是一个对象
+</script>
+</html>

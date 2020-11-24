@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多Tab切换</title>
+</head>
+<body>
+<h2>多Tab点击切换</h2>
+<ul id="tab">
+    <li id="tab1" value="1">10元套餐</li>
+    <li id="tab2" value="2">20元套餐</li>
+    <li id="tab3" value="3">30元套餐</li>
+</ul>
+<div id="container">
+    <div id="content1">
+        十元套餐
+    </div>
+    <div id="content2" style="display: none">
+        二十元套餐
+    </div>
+    <div id="content3" style="display: none">
+        三十元套餐
+    </div>
+
+
+</div>
+</body>
+
+
+<script type="text/javascript" src="../bootstrap/jquery-2.0.0.min.js"></script>
+<script type="text/javascript">
+let $btns=$('#tab li');//获取id为tab里的li标签
+let $divs=$('#container div');//获取id为container下的div
+
+//定义表示变量 记录上一次显示的内容容器的索引值
+let index=0;
+
+    $btns.click(function () {
+
+        let clickindex=$(this).index();//拿到序号，把DOM对象转换为jQuery对象再去使用index方法，只有jQuery才有index方法的
+      //去重点击判断，是否这次点击的是上一次点击的，若是就不要none啦，就是也啥也不做，就reyurn就行了
+        if (index==clickindex){
+            alert('请不要重复点击');
+            return}
+        //  $div.css('display','none');//让无关dom参加我的活动
+       $divs[index].style.display='none';
+       //获取当前点击的索引值，以保存以下次用户点击其他的时候，它可以为none
+        index=clickindex;
+        $divs[clickindex].style.display='block';
+        $divs[clickindex].style.color='pink';
+        alert('点击了'+clickindex);
+
+
+    })
+
+</script>
+</html>

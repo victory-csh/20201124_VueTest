@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON</title>
+</head>
+<body>
+<script type="text/javascript">
+
+   /* //1/JSON.stringfy(obj/arr)
+      *js对象（数组）转化为json对象（数组）
+      * 2、JSON.parse(json)
+      * json对象（数组）转化为js对象（数组）*/
+
+   var obj={name:'lxc'};
+   console.log(typeof  obj);
+   obj=JSON.stringify(obj);
+   console.log(typeof obj);//已经变成JSON对象了,string
+
+    obj=JSON.parse(obj);
+    console.log(typeof obj);//变为对象类型了
+
+
+</script>
+
+</body>
+</html>

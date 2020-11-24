@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包案例</title>
+</head>
+<body>
+<ul id="heroes">
+    <li>安其拉</li>
+    <li>李白</li>
+    <li>诸葛亮</li>
+    <li>狄仁杰</li>
+</ul>
+<script>
+/*1、方式一*/
+ var heroes=document.getElementById('heroes');
+    var list=heroes.children;
+    //console.log(list);
+    for (var i=0;i<list.length;i++){
+        var li=list[i];
+       // console.log(li);
+        li.index=i;//通过对象的自定义属性来记录每一个元素的i
+        li.onclick=function () {
+            console.log(this.index);//----this不要写成li了，this是指事件处理的当前的对象
+
+        }
+
+    }
+
+
+/*// 方式二
+var heroes=document.getElementById('heroes');
+var list=heroes.children;
+//console.log(list);
+for (var i=0;i<list.length;i++){
+    var li=list[i];
+
+    (function (i) {
+
+        li.onclick=function () {
+            console.log(i);//----闭包
+
+        }
+    })(i);//-----把i记录下来以便访问
+
+
+}*/
+</script>
+</body>
+</html>

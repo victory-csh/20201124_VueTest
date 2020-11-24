@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪数组</title>
+</head>
+<body>
+<script>
+    /*伪数组*/
+    var obj={
+        0:100,
+        1:10,
+        2:11,
+        3:20,
+        length:4
+    };
+    Array.prototype.push.call(obj,30);
+    Array.prototype.splice.call(obj,1,1);
+    console.log(obj);
+
+    /*Object的tostring*/
+    var obj1={
+        name:'zs'
+    };
+    console.log(obj1.toString());/*是【object，Object】*/
+var arr=[5,9];
+console.log(arr.toString());/*array 的tostring是5,9，但终究还是object的tostring
+只是被数组内部重写过了*/
+    console.log(Object.prototype.toString.call(arr));/*打印出【object,Array】，
+                                                      因此我们可以找到数组对象的构造函数了*/
+
+
+</script>
+</body>
+</html>

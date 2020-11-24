@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>_promise的几个关键问题1</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    /*promise是什么？
+    * 1、抽象表达：
+    *   promise是一门新的技术（ES6规范）
+    *   promise是JS中进行异步编程的新解决方案，旧的是我们经常自己写的回调函数
+    * 2、具体表达：
+    *  从语法上来说：promise是一个构造函数
+    *  从功能上来说：promise对象用来封装一个异步操作并可以获取其成功、失败的结果值
+    * 3、promise的状态改变（只有2种，只能改变一次）
+    *   pending变为resolveed
+    *   pending变为rejected
+    * 4、promise的基本流程参照官网*/
+
+/*改变promise状态和指定回调函数谁先谁后
+* （1）都有可能，正常情况下是先指定回调函数再改变状态，但是也可以先改变状态再指定回调函数
+* （2）如何先改变状态再指定回调函数？
+* ①在执行器中直接resolve（）、reject（）
+* ②延迟更长时间才调用then（），即使用settime
+* （3）什么时候才能得到数据？
+* ①如果先指定的回调，那当状态发生改变时，回调函数就会被调用，得到数据
+* ②如果先改变的状态，那当指定回调时，回调函数就会被调用，得到数据
+* 以上，回调函数都会被放入队列里的，也就是说回调函数是异步的*/
+
+
+
+
+/*/!*常规：先指定回调函数，后改变状态*!/
+new Promise((resolve,reject)=>{
+    console.log('excutor');//他是同步执行的，,因为这句话是一运行就打印了，而“外部打印”是后面打印的
+    //启动异步任务
+    setTimeout(()=>{
+        resolve(1);
+        console.log('resolve状态改变后了！')
+
+    },1000)
+}).then(
+    value=>{//它是异步执行的，因为先打印的状态改变之后
+        console.log('onResolve()',value)
+    }
+);
+console.log('外部打印')*/
+
+    /*先改变状态，再指定回调函数*/
+    const  p=new Promise((resolve,reject)=>{
+
+        console.log('excutor()');
+        setTimeout(()=>{
+            resolve(1);
+            console.log('resolve()改变状态之后')
+        },1000)
+    });
+
+    setTimeout(()=>{
+        p.then(
+            value=>{console.log('onResolve()',value)}
+        )
+    },2000);//即使状态改变后才指定回调函数，该回调函数还是会被放入队列里，也就是还是异步的
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组的扩展</title>
+    <!--1、Array.from(v):将伪数组对象或可遍历对象转化为真数组
+    2、Array.of(v1,v2,v3)：将一系列值转化为数组
+    3、find(function(value,index,arr){return true}):找出第一个满足条件返回true的元素
+    4、findIndex(function(value,index,arr){return true}):找出第一个满足条件返回true的元素下标-->
+</head>
+<body>
+<button>测试1</button>
+<button>测试2</button>
+<button>测试3</button>
+
+<script type="text/javascript">
+
+    /*let  btns=document.getElementsByTagName('button');
+    btns.forEach(function (itrm,index) {
+        console.log(itrm,index);
+
+    });//无法遍历，说明是伪数组*/
+
+    /*调用方法让它成为伪数组---array.from(v)方法使用*/
+
+    console.log('---------------array.from(v)方法使用----------');
+    let  btns=document.getElementsByTagName('button');
+    Array.from(btns).forEach(function (item,index) {//将btn1转化为真数组在进行forEach
+
+        console.log(item,index);
+    });
+
+
+    console.log('----------Array.of(v1,v2,v3)方法使用----------------------');
+ console.log(Array.of(1,2,3));
+
+/*自己写一个Array.of方法*/
+function of(...values) {
+   // console.log(values+'!');
+    let result=[];
+    values.forEach(  (item)=> result.push(item) );
+return result;
+
+}
+
+console.log(of(4,5,6));
+
+
+console.log('-----find(function(value,index,arr){return true})的使用----------');
+let arr3=[3,7,8,9,10];
+/*找出数组中第一个满足条件的数字，该条件是大于5*/
+let  result1=arr3.find(function (item,index ){
+   // console.log(item,index);
+    return item>5;
+
+});
+console.log(result1);
+
+
+    console.log('-----findIndex(function(value,index,arr){return true})使用----------');
+    let arr4=[3,7,8,9,10];
+    /*找出数组中第一个满足条件的数字，该条件是大于5*/
+    let  result2=arr4.findIndex(function (item,index ){
+        // console.log(item,index);
+        return item>5;
+
+    });
+    console.log(result2);
+
+</script>
+</body>
+</html>

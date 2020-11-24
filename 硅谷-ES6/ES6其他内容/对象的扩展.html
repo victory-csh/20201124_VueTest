@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的扩展</title>
+    <!--1、Object.is(v1,v2):判断2个数据是否完全相等
+    2、Object.assign(target,source1,source2)..:将源对象的属性复制到目标对象上
+    3、直接操作 _proto_属性：let obj2={} ;obj2.__proto__=obj1;-->
+</head>
+<body>
+<script type="text/javascript">
+    console.log(NaN===NaN);//NaN不等于任何值，包括它自己
+    console.log(0===-0);//true ,因为都是number，====是判断数据类型的
+console.info('--------------Object.is(v1,v2)-----------');
+    console.log(Object.is(0,-0));
+    console.log(Object.is(NaN,NaN));//该函数判断两个数是否长得一样
+
+
+    console.log('--------------Object.assign(source1,source2)使用-----------');
+let target={a:1,b:2};
+let source={b:4,c:5};
+let finishTarget=Object.assign(target,source);//source对于target有的就覆盖，对于target没有的就添加
+console.log(target);
+console.log(finishTarget);
+
+
+console.log('-----Object.assign(target,source1,source2)使用--------');
+/*克隆、拷贝*/
+let source1={};
+let source2={name:'lxc'};
+let source3={age:23};
+let finishTarget1=Object.assign(source1,source2,source3);
+console.log(finishTarget1);
+
+console.log('--------------直接操作 _proto_属性：let obj2={} ;obj2.__proto__=obj1;------------------------');
+/*在ES6允许操作隐式原型(__poto__)了，之前在ES5只能操作显示原型（prototype）*/
+let obj3={};
+obj3.__proto__=finishTarget1;
+console.log(obj3);
+
+function Student() {
+
+}
+
+let student=new  Student();
+student.__proto__=finishTarget1;
+console.log(student);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点点点运算符</title>
+</head>
+<body>
+<script type="text/javascript">
+ console.log('----------------用途1：rest可变参数-------------------');
+ function fun(a,b,c) {
+     //arguments用来收集实参的伪数组
+     //伪数组：有length属性，可以通过下标获取对应的值，但是没有数组的一般方法（push,filter,map）
+
+     console.log(arguments.length);
+
+     arguments.forEach(function (item,index) {//foreach用不了，只有是真的数组才可以用
+         console.log(item,index);
+
+     })
+ }
+
+/*rest（可变）参数
+* 用来取代arguments但比arguments灵活，只能是最后部分形参参数*/
+function fun1(...values) {
+
+    console.log(arguments);
+    console.log(values);
+
+    values.forEach(function (item,index) {
+
+        console.log(item,index);//打印2 0| 3 1 | 4 2
+
+    });
+
+}
+fun1(2,3,4);
+
+ function fun2(a,...values) {//把第一个形参给a了，values就少收集了前面一个形参了
+//三点运算符，必须被放在最后 fun2(a,..values,b)是会报错的
+     console.log(arguments);
+     console.log(values);
+
+     values.forEach(function (item,index) {
+
+         console.log(item,index);//打印3 0  | 4 1
+
+     });
+
+ }
+ fun2(2,3,4);
+
+ console.log('----------------用途2：扩展运算符-------------------');
+
+ let arr=[1,6];
+ let arr2=[2,3,4,5];
+
+ let arr3=[1,...arr2,6];
+ console.log(arr3);//相当于把arr2插进去arr里面了
+ console.log(...arr2);//2 3 4 5 ...就是把数组中的值给拎出来了（拆包）
+
+    let  obj2={name:'lxc',age:23};
+    console.log(...obj2);//运行会报错，说明三点运算符无法拆包对象，只能拆包数组
+
+
+
+</script>
+</body>
+</html>

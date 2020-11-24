@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的拷贝</title>
+</head>
+<body>
+
+<script>
+    var wjl={
+        name:'王建林',
+    money:1000000,
+        cars:['玛莎拉蒂', '特斯拉'],
+        house:['别墅'],
+        play:function() {
+            console.log('打高尔夫');
+
+      }
+    };
+    var wsc={
+        name:'王思聪'
+    };
+     function extend(parent,child) {
+        for (var key in parent){
+            /*有属性子有了，父亲就不用给了，直接跳过该属性的赋值，用continue*/
+            if (child[key]){
+                continue;
+
+            }
+            child[key]=parent[key];
+
+        }
+
+
+    }
+
+    extend(wjl,wsc);
+     console.log(wsc);
+
+</script>
+</body>
+</html>

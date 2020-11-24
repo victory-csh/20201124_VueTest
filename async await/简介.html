@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简介</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+    /!*asycn写在一个函数的左边，标识它是一个异步函数，
+    * await用于等待一个promise对象*!/
+    function resolveAfter2Seconds() {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve('resolved')
+            }, 2000)
+        });
+
+    }*/
+async function asyncCall() {
+        console.log('calling');
+        let result=await resolveAfter2Seconds();//省去了then了
+        console.log(result);
+
+}
+asyncCall();
+
+
+    //被asycn定义的统一返回promise对象，如下：
+    async function fn1() {
+        return 1;
+
+    }
+    const  result=fn1();
+    console.log(result);//是一个promise，而不是‘1‘
+
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>借用构造函数</title>
+</head>
+<body>
+<script>
+    /*父类*/
+    function Person(name,age,sex) {
+        this.name=name;
+        this.sex=sex;
+        this.age=age;
+        this.sayhi=function () {
+            console.log(this.name);
+
+        }/*但每创建一个学生或者老师对象都要各自存储一个sayhi方法
+        浪费空间，最好是存在原型链中*/
+
+    }
+/*
+    Person.prototype.sayhi=function () {
+        console.log(this.name);
+
+    };*/
+    /*子类型*/
+    function Student(name,age,sex,score)
+    {
+        Person.call(this,name,age,sex);/*借用了父类的构造函数*/
+        this.score=score;
+
+    }
+    var  student=new  Student('lxc',22,'girl',100);
+    console.dir(student);/*使用    Person.prototype.sayhi=function () {
+        console.log(this.name);并没有sayhi方法*
+        只用用到this才会有sayhi/
+</script>
+
+</body>
+</html>

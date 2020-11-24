@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初始jQuery</title>
+</head>
+<body>
+
+<!--用户名：<input  type="text" id="username">
+<button id="btn1">原生JS</button>
+<button id="btn2">jQuery版本</button>-->
+
+<div id="box" class="wrap">
+
+    <button id="btn">测试</button>
+
+    <br/>
+
+    <input id="input" type="text" name="mag1"/>
+    <input type="text" name="mag2"/>
+<p>123</p>
+
+</div>
+
+</body>
+
+
+<script type="text/javascript" src="../bootstrap/jquery-2.0.0.min.js"></script>
+<script type="text/javascript">
+
+
+    /* //原生js
+     alert('原生js');
+     window.onload=function () {
+
+         var btn1=document.getElementById('btn1');
+         btn1.onclick=function () {
+             alert(document.getElementById('username').value)
+
+         }
+     };
+ */
+
+  /* //window.onload---相当于$()
+    console.log('jQuery');
+    $(function () {//相当于一个匿名函数
+        //查找按钮的dom,和CSS选择器差不多
+        $('#btn2').click(function () {
+            alert($('#username').val());
+        });
+
+    });
+console.log(typeof $);//$是一个function
+console.log($=== jQuery);//true
+    console.log($===window.$);//true $是个全局函数
+    console.log(typeof $());//Object*/
+
+
+  /*需求1：点击按钮：显示按钮的文本，显示一个新的输入框
+  * 需求2：遍历输出数组中所有元素值
+  * 需求3：去掉"my atguigu" 两端的空格*/
+
+/*作为一般函数调用：${param}
+* 1)、参数为函数：当DOM加载完成后，执行此函数
+* 2）、参数为选择器字符串：查找所有匹配的标签，并将它们封装成jQuery对象
+* 3）、参数为DOM对象：将dom对象封装成jQuery对象
+* 4）、参数为html标签字符串（用得少）：创建标签对象并封装成jQuery对象*/
+
+
+  alert('------需求1：点击按钮：显示按钮的文本，显示一个新的输入框--------------');
+  //1)参数为函数：当DOM加载完成后，执行此回调函数
+$(function () {
+//参数为选择器字符串：查找所有匹配的标签，并将它们封装成jQuery对象
+    $('#btn').click(function () {
+
+       // alert(this.html());//this是DOM,原生DOM没有html()这个方法，jQuery才有
+        alert($(this).html());//3）、参数为DOM对象：将dom对象封装成jQuery对象
+//* 4）、参数为html标签字符串（用得少）：创建标签对象并封装成jQuery对象*/
+        $('<input type="text" name="msg1" />').appendTo(".wrap");
+    });
+
+//* 需求2：遍历输出数组中所有元素值
+    let  arr=[3,4,5,6];
+    $.each(arr,function (index,item) {
+        console.log(index,item);
+
+    });
+//  * 需求3：去掉"my atguigu" 两端的空格*/
+    let str='     my atguigu       ';
+   console.log('------------'+$.trim(str)+'-------------');
+
+})
+
+
+</script>
+
+</html>

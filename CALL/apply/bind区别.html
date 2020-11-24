@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>call/apply/bind区别</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var  obj={
+        name:'lxc'
+    };
+    function fun(msg) {
+        console.log(this,msg);
+
+    }
+    fun.call(obj,123);//修改完this指向就立即调用的
+    fun.apply(obk,[123]);//修改完this指向就立即调用的
+
+
+   var test= fun.bind(obj,123);
+    test();//由于bind不会只调用，所以才要接住它的返回值进行调用
+</script>
+
+
+</body>
+</html>

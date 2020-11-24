@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>_offset和position</title>
+    <!--需求：
+    1、点击 btn1
+        打印div1相对于页面左上角的位置
+        打印div2相对于页面左上角的位置
+        打印div1相对于父元素左上角的位置
+        打印div2相对于父元素左上角的位置
+     2、点击btn2
+        设置div2相对于页面的左上角的位置-->
+
+
+</head>
+<style type="text/css">
+   *{margin: 0px;}
+    .div1{position: absolute;
+
+        width: 200px;
+        height: 200px;
+        top: 20px;
+        left:10px;
+        background: blue;
+
+    }
+    .div2{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 50px;
+        background: red;
+    }
+    .div3{
+
+        position: absolute;
+        top: 250px;
+    }
+
+</style>
+
+<body style="height: 2000px;">
+
+
+<div class="div1">
+    <div class="div2">测试offset</div>
+</div>
+
+<div class="div3">
+    <button id="btn1">读取offset和position</button>
+    <button id="btn2">设置offset</button>
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="../bootstrap/jquery-2.0.0.min.js"></script>
+
+<script type="text/javascript">
+
+    //打印div1相对于页面左上角的位置
+    console.log($('.div1').offset());//返回一个对象，里面有top和left属性
+//   打印div2相对于页面左上角的位置
+    console.log($('.div2').offset());//结果是不是与div1的位置偏移，而是相对于页面的偏移位置
+
+//  打印div1相对于父元素左上角的位置
+    console.log($('.div1').position());
+//
+    //  打印div2相对于父元素左上角的位置
+    console.log($('.div2').position());
+
+
+    //设置div2相对于页面的左上角的位置
+    $('#btn2').click(function () {
+
+    /*    $('.div2').css({
+            'left':'300px',
+            'top':'100px'
+
+        })*/
+    $('.div2').offset({//用offset不需要加引号和px
+        left:200,
+        top:50
+    })
+    })
+
+</script>
+
+
+</html>

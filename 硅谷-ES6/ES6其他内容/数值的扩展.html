@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数值的扩展</title>
+    <!--1、二进制与八进制数值表示法：二进制用0b，八进制用0O
+    2、Number.isFinite(i):判断是否是有限大的数
+    3、Number.isNaN(i):判断是否是NaN
+    4、Number.isInteger(str):判断是否为整数
+    5、Number.parseInt(str):将字符串转换为对应的数值
+    6、Math.trunc(i):直接去除小数部分-->
+</head>
+<body>
+<script type="text/javascript">
+/*二进制*/
+console.log(0b1010);//该二进制1010，被转化为十进制显示出来，就是10
+    /*八进制*/
+console.log(0o56);//56是八进制，转化为二进制是101110，再转化为十进制是46
+console.log(Number.isFinite(123));//123是否是有限大的，NaN和Infinity都是false
+console.log(Number.parseInt('123.123'));//将它取整了
+console.info(Number.parseInt('123.aaa'));//结果是123，因为它一看见不是数字就不看了，
+console.log(Number.parseInt('a123a'));//结果为NaN，因为它一看见非数字就不会再看后边的了
+    //*笔试题*/
+let str1='23.23';
+let  str2='24.24';
+    console.log(parseInt(str1)+parseInt(str2));//47
+    console.log(parseInt(str1+str2));//23,因为它只看有数字开头的，非数字都不看了
+console.log(Math.trunc(123.123))
+</script>
+</body>
+</html>

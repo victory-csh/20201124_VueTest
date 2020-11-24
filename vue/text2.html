@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>1、双大括号表达式|插值插到页面的标签文本     {{}}</h2>
+        <p>------{{msg.toUpperCase()}}----------</p>
+       
+        <h2>2、指令一：强制数据绑定v-bind</h2>
+        <a v-bind:href="url">去学习</a>
+          <!-- //v-bind:href="url"称为强制数据绑定，简洁写法是  :href="url" ，一般用于动态值的绑定，在Vue的api文档可以看到 -->
+        
+          <h3>3、指令二：绑定事件监听v-on</h3>
+        <button v-on:click="test"> test1</button>
+        <!-- 简化的写法是 @click="test"-->
+
+
+        <script src="../js/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    msg: 'lxc',
+                    url: 'http://www.baidu.com'
+                },
+                methods: {
+                    test(event){
+                        alert(event.target.innerText)
+                        // 弹出test1
+                    }
+                },
+            })
+        </script>
+    </div>
+</body>
+
+</html>

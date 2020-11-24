@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.create</title>
+</head>
+<body>
+<script type="text/javascript">
+obj={
+    name:'lxc',
+    age:20
+
+};
+var obj2=Object.create(obj,{
+    sex:{
+        value:'男',
+        writable:true,
+        configurable:true,
+        enumerable:true
+    }
+});
+    console.log(obj2);
+    obj2.sex='女';
+    console.log(obj2.sex);
+
+    //for in 用来枚举对象的属性的
+    for(var item in obj2){
+        //不打印原型上的属性，只打印自己的属性
+        if(obj2.hasOwnProperty(item)){   console.log(item);}
+
+
+
+    }
+
+</script>
+</body>
+</html>

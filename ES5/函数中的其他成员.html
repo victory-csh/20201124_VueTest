@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数中的其他成员</title>
+
+</head>
+<body>
+<script>
+    function fn() {
+        //伪数组
+     /*   console.log(fn.arguments);//-----是一个伪数组，里面的元素是函数的实参
+        console.log(fn.caller);//函数的调用者
+        console.log(fn.name);//函数的名称
+        console.log(fn.length);//函数的形参个数*/
+/*
+console.log(arguments);//-----是一个伪数组，里面的元素是函数的实参
+*/
+
+    }
+ /*   fn(1,2,3);*/
+ function max() {
+     /*当函数内部的参数个数不固定的时候，
+     * 在函数内部，可以通过argument获取到实际传过来的参数*/
+     var max=arguments[0];
+     for (var i=0;i<arguments.length;i++){
+
+         if (max<arguments[i]){
+             max=arguments[i];
+         }
+
+     }
+     return max;
+ }
+ console.log(max(2,3));
+ /*以上方法就是模仿Math.Max的内部做法*/
+</script>
+</body>
+</html>

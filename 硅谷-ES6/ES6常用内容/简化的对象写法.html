@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6-简化的对象写法</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    /*以下是正常模式的对象写法*/
+
+   console.log('------------------对象的常规书写方式-----------');
+   let  username='lxc';
+   let  age=23;
+    /* let obj={
+        username:username,
+        age:age,
+        showName:function () {
+            console.log(this.username);
+
+        }
+    };
+
+    console.log(obj);
+    obj.showName();
+    */
+
+   console.log('-------------对象的简写方式-----------------------------');
+   let obj={
+       username,//同名的属性---->key 和value一样的时候
+       age,
+       showName(){//省略了函数的 ：function
+           console.log(this.username);
+       }
+   };
+  console.log(obj);
+  obj.showName();
+
+
+</script>
+</body>
+</html>

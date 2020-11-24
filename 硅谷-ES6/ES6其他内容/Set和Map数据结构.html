@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set和Map数据结构</title>
+    <!--1、Set容器：无序不可重复的多个value的集合体(数组)
+       *Set（）
+       *Set（array)
+       *add(value）
+       *delete(value)
+       *has(value)
+       *clear()//全部清空
+       *size
+       2、Map容器：无序的key不重复的多个key-value的集合体
+        *Map()
+        *Map(array)
+        *set(key,value)//添加
+        *get(key)
+        *delete(key)
+        *has(key)
+        *clear()
+        *size-->
+</head>
+
+<body>
+<script type="text/javascript">
+console.log('---------------Set容器：无序不可重复的多个value的集合体(数组)------------------------------------');
+    let arr=[1,2,3,4,5,5,4,3,2,1];
+    let set=new  Set(arr);
+    console.log(set);//结果为5个，因为自动不包含重复的内容
+    set.add(6);
+    console.log(set);//多了个六
+    console.log(set.has(6));//true
+console.log('------------ 2、Map容器：无序的key不重复的多个key-value的集合体-----------------------------------');
+
+/*let map=new Map({name:'lxc'});*///不能丢对象进去，因为对象没有Symbol.iterator  object is not iterable (cannot read property Symbol(Symbol.iterator))
+   let map=new Map([[1,12],[2,13]]);//必须是二维数组
+    console.log(map);
+
+    map.set('name','lxc');
+    console.log(map);//又添加了键值对和值lxc
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+</head>
+<body>
+
+<script>
+    /*   函数调用，可以运行，是因为函数声明，在解析的时候有了提升*/
+    fn();
+    /*1、函数声明*/
+    function fn() {
+
+        console.log('test');
+
+    }
+
+    /*   函数调用,会出错，因为fn1没有声明，不会提前解析出来，
+    这么快就调用会有问题，必须在fn1后再运行，因为该函数没有声明*/
+  // fn1();
+
+
+//2、函数表达式--匿名函数，用一个变量去接住它*/
+var fn1=function () {
+    console.log('这是一个匿名的函数')
+};
+/*根据条件声明函数,本来在正常全局环境中，函数提升，第二个fn2会覆盖上一个fn2
+* 则会打印fale，但是由于在if语句中，浏览器不会提升里面的函数*/
+
+if (true){
+    function fn2() {
+        console.log('fn2-true');
+    }
+}
+else {
+    function fn2() {
+        console.log('fn2--false');
+
+    }
+
+}
+fn2();
+/*3、构造函数--看着很像new一个对象，方法要写在字符串里面，所以
+* 编译器解析要把字符串里面的内容解析成javascript代码再给cpu运行
+* --所以会比较慢*/
+var fn3=new Function('var name="张三";console.log(name)');
+fn3();
+/*此处的fn是个对象，所以函数就是对象*/
+/*若构造函数要传参数必须在最前面传进来*/
+var fn4=new Function('a','b','console.log(a+b)');
+fn4(1,2);
+
+</script>
+</body>
+</html>

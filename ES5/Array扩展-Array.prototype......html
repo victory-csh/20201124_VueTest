@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array拓展</title>
+</head>
+<body>
+<!--1、Array.prototype.indexOf(value):得到值在数组中的一个下标
+2、Array.prototype.lastIndexOf(value):得到值在数值中的最后一个下标
+3、Array.prototpe.forEach(function(item,index){}):遍历数组返回一个新的数组，返回加工之后的值
+4、Array.prototype.map(function(item,index{})):遍历数组返回一个新的数组，返回加工之后的值
+5、Array.prototype.filter(function(item,index){}):遍历过滤一个新的子数组，返回条件为true的值-->
+
+<script type="text/javascript">
+    var  arr=[1,23,45,67];
+    console.log(arr.indexOf(67));
+
+    /*对数组进行加工再生成新的数组*/
+ var newarray=arr.map(function (t, number) {
+     return t+10;
+ });
+
+ console.log(newarray);//只是生成了新的数组，源数组是没有改变的
+ /*过滤大于三十的数，集成一个数组*/
+ var newarr=arr.filter(function (t, number) {
+     if(t>30){return true;}
+
+ });
+ console.log(newarr);//只是生成了新的数组（里面的数大于30的），源数组是没有改变的
+    //利用简单的push在数组尾部添加新的数据，用Foreach遍历数组
+    arr.push(123);//返回值是数组最新的length，和上面不同哦！
+    arr.forEach(function (t, number) {
+        console.log(t,number);
+    })
+</script>
+
+
+
+
+</body>
+</html>

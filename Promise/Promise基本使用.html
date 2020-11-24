@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise基本使用</title>
+</head>
+<body>
+
+
+</body>
+<script>
+
+ /*//处理时间回调：
+    //1)创建promise对象（pending状态），指定执行器
+    const p=new  Promise((resolve,reject)=>{//同步执行的执行函数
+
+        setTimeout(()=>{
+
+            //3)根据结果做不同处理
+            const  time=Date.now()
+                //3.1)如果成功了，调用resolve（），指定成功的value，变为resolved状态
+                //3.2)如果失败了，调用reject（），指定失败的reason，变为rejected状态
+                if (time %2 ==1){resolve('成功数据：'+time)}
+                else {reject('失败原因：'+time)}
+
+
+
+        },1000)
+
+    });
+//4)能promise指定成功或失败的回调函数来获取成功的value，失败的reason
+ p.then(
+
+     value=>{ console.log('成功',value)},
+     reason=>{console.log('失败',reason)}
+ )*/
+
+
+
+
+/* //ajax请求
+   function promiseAjax(url) {
+       return new Promise((resolve,reject)=>{
+
+           //使用xhr发异步ajax请求
+           const xhr=new XMLHttpRequest();
+           xhr.open('GET',url);
+           xhr.send();
+           xhr.onreadystatechange =()=>{
+               //如果请求未完成，直接结束
+               if (xhr.readyState!==4) return
+               //如果成功了，调用resolve(),并指定成功的value
+               if (xhr.status>=200 && xhr.status<400){
+                   resolve(JSON.parse(xhr.response))
+               }else {
+                   //如果失败了，调用reject()，并指定失败的reason
+                   reject(new Error('request errror status:'+xhr.status))
+               }
+
+           }
+
+
+       })
+
+
+
+
+
+           }
+   promiseAjax('https://api.apiopen.top/EmailSearch?number=1012002')
+   .then(
+         result=>{console.log('请求成功：',result)},//前后要一致，前是result后面就得跟着一样，前面是value后面就用value
+
+         error=>{
+       alert(error.message)}
+
+   )*/
+
+
+/*
+//使用catch
+    new     Promise((resolve,reject)=>{
+
+        setTimeout(()=>{
+            reject(2);
+        },1000);
+
+    }).then(value=>{
+        console.log('onResolved()',value)//由于在then里面没有写reason，所以它去catch里找reason
+    }).catch(reason=>{  console.log('onRejected2()',reason)})*/
+
+/*//3、Promise.resolve方法：（value）=>{}
+*  value:成功的数据或promise对象
+*  说明：返回一个成功/失败的promise对象
+*
+*  4、Promise.reject方法：（reason)=>{}
+*  reason:失败的原因
+*  说明：返回一个失败的promise对象
+*
+*  5、Promise.all方法：（promise）=>{}
+*  promise:包含n个promise的数组
+*  说明：返回一个新的promise，只有所有的promise都成功才成功，只要有一个失败就直接失败
+*
+*  6、Promise.race方法：（promise）=>{}
+*  promise:包含n个promise的数组
+*  说明：返回一个新的promise，第一个完成的promise的结果状态就是最终的结果状态
+*
+* Promise.resolve方法、Promise.reject方法、Promise.all方法、Promise.race方法都返回一个promise对象*/
+
+/*创建一个value值为3的promise对象*/
+const p1=new  Promise((resolve,reject)=>{
+
+    setTimeout(()=>{resolve(3)},1000)
+
+
+});
+const p2=Promise.resolve(5);//与上面的写法的结果一样
+const  p3=Promise.reject(4);
+
+p1.then( value=>console.log('p1 value',value));
+p2.then(value=>console.log('p1 value',value));
+p3.catch(reason=>console.log('p3 reason',reason));
+
+
+const p4=Promise.all([p1,p2,p3]);//p1,p2,p3这三个promise都成功了，p4才算成功
+ p4.then(
+     value=>console.log('p4 all onReasolve()',value),
+     reason=>console.log('p4 all onReject()',reason)//由于p3失败了，所以p4的失败原因就是p3的失败原因
+
+ );
+const  p5=Promise.all([p1,p2]);
+ p5.then(
+     value=>console.log('p5 all onReasolve()',value),//由于p1和p2都通过，所以p5也是通过的，返回的是一个数组，
+                                        // 里面装着p1和p2成功的值，p1先与p2是与数组的先后顺序有关的[p1,p2]
+     reason=>console.log('p5 all onReject',reason)
+ );
+
+
+ const p6=Promise.race([p1,p2,p3]);//赛跑过程中p1由于延迟了一秒，所以比p2慢，p3是失败的，所以最后p6的返回结果是p1
+ p6.then(
+
+     value=>console.log('p6 race onResolved()',value),
+     reason=>console.log('p6 race onRejectd()',reason),
+
+ );
+</script>
+</html>

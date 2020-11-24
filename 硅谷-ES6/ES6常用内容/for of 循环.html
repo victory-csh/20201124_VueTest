@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for of 循环</title>
+    <!--for(let value of target){}循环遍历
+     1、遍历数组
+     2、遍历Set
+     3、遍历Map
+     4、遍历字符串
+     5、遍历伪数组
+     -->
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<script type="text/javascript">
+
+    let arr=[1,2,3,4,5];
+    let set=new Set(arr);
+  //  let arr1=[];
+    for (let  value of set ){
+      //  arr1.push(value);
+        console.log(value)
+    }
+   // console.log(arr1);
+let  btns=document.getElementsByTagName('button');
+    for (let value of btns){
+
+        console.log(value);
+    }
+
+  console.log('---------------数组去重(主要用indexof)------------------');
+    let arr1=[1,2,2,1,3,3,4,4,5,5];
+
+    function uniqArr(arr) {
+        let  result=[];
+        arr.forEach(function (item,index) {
+            //新数组是否包含原数组中的元素
+
+            if (result.indexOf(item)===-1){//若item不在result里面，indexof会返回-1
+                result.push(item)
+            }
+
+        });
+        return result;
+    }
+console.log(uniqArr(arr1));
+    console.log('------------ES6去重（主要用Set容器）----------------------');
+    function uniqArr2(arr) {
+        result1=[];
+
+        let set=new Set(arr);
+      for (let item of set){
+            result1.push(item);
+        }
+        return result1;
+    }
+    console.log(uniqArr2(arr1));
+    console.log('-------------------ES6去重（主要用...符号）--------------------------------');
+
+     uniqArr3=arr=>[...new Set(arr)];
+
+
+    console.log(uniqArr3(arr));
+</script>
+
+
+</body>
+</html>

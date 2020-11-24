@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>call</title>
+</head>
+<body>
+
+
+<script>
+
+    /*bindKy改变函数中的this指向，并且返回一个新的函数，但是不会调用该函数，
+    call会改变并且还会去调用改变完的函数*/
+
+    function  fn(x,y) {
+        console.log(this);
+        console.log(x+y);
+
+    }
+    var o={
+        name:'zs'
+    };
+
+    fn.call(o,1,2);/*呼叫函数*/
+
+
+</script>
+</body>
+</html>

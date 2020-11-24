@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类的基本使用</title>
+    <!--1、通过class定义类、实现类的继承
+    2、在类中通过constructor定义构造方法
+    3、通过new来创建类的实例
+    4、通过extend来实现类的继承
+    5、通过super调用父类的构造方法
+    6、重写从父类中继承的一般方法
+    通过-->
+</head>
+<body>
+
+<script type="text/javascript">
+
+    class  Person{
+
+
+        static  num=123;//这也是类自身的属性，它的实例用不了的
+
+        constructor(name,age){
+
+            console.log('----------constructor()--------');
+            this.name=name;
+            this.age=age;
+
+        }
+        //类的一般方法
+        showInfo(){
+
+            console.log(this.name,this.age);
+        }
+    }
+    //使用类：同构造函数使用方式一样
+    let person1=new Person('lxc',23);
+    console.log(person1);//发现showInfo不在属性里面，而在原型里面
+    person1.showInfo();
+    Person.msg='这是类自身的属性！';//可以给类添加属性
+    /*类自身的属性相当于，Array.keys(),只能是数组的构造函数才可以调用keys，数组的实例对象是无法调用的；*/
+    console.log(person1.msg);
+
+/* ----------  4、通过extend来实现类的继承--------------------*/
+console.log('---------------------   4、通过extend来实现类的继承--------------------');
+
+class  Child extends Person{//Child继承父类
+    constructor(name,age,sex){
+        super(name,age);//super调用父类的构造方法---类似于借用构造函数继承
+        this.sex=sex;//父类没有的情况下就需要自己赋值了
+
+    }
+
+    //父类的方法重写:当父类原型的方法不能满足子类实例需求的时候就需要父类方法重写了
+    showInfo(){
+        console.log(this.name,this.age,this.sex);
+    }
+
+}
+let child1=new Child('csh',24);
+console.log(child1);
+/*子类的原型成为父类的实例！--父类的实例赋给子类的原型*/
+child1.showInfo();//自身没有，自己的原型指向了Person，而Person的原型上面有，所以就找到了
+
+</script>
+</body>
+</html>

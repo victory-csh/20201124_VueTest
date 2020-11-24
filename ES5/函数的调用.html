@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数的调用</title>
+</head>
+<body>
+
+<script>
+
+    /*不同的调用函数内部的this指向是不一样的
+    1、普通函数调用--fn();----谁调用该函数，this就指向谁*/
+    /*2、调用对象中的方法-----谁调用该函数，this就指向谁
+    * var obj={
+    *
+    * fn:function(){}
+    *
+    * }
+    * obj.fn;---进行调用
+    *
+    * 3、作为构造函数调用  -----构造函数内部this指向又该构造函数创建的对象
+    * 4、作为事件处理函数------this指向触发改事件的对象
+    * 5、作为定时器的参数----this指向window
+    * setInterval(function(){},1000);
+    *
+    * */
+//函数内部的this是由函数调用时来确定其指向的
+    var  obj={
+        name:'lxc',
+        fn:function () {
+            console.log(this);
+
+        }
+    };
+    var fn=obj.fn;
+  /*  fn();//由于是window在调用fn，所以this指向的是window*/
+  obj.fn();/*则this指向obj*/
+</script>
+</body>
+</html>

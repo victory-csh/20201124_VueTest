@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+<button id="btn1">测试箭头函数this——1</button>
+<button id="btn2">测试箭头函数this——2</button>
+<script type="text/javascript">
+ console.log('-------------常规函数--------------');
+ function fun() {
+     console.log('fun()被调用了！')
+
+ }
+ fun();
+ console.log('---------------箭头函数-没有形参----------------------');
+ /*箭头函数没有形参的时候（）不能省略*/
+  let fun1=()=>console.log('fun1()被调用了！');
+ fun1();
+console.log('----------------箭头函数-有形参---------------------');
+/*只有一个形参的时候，括号可以省略掉，当然加上也没有错的*/
+let  fun2=(a)=>console.log('只有一个形参，他是',a);//也可以写成fun2=a=>console.log(a);
+ fun2(1);
+ console.log('--------------箭头函数-有多个形参的事实---------------');
+ /*括号不可以省略，当有多个形参的时候*/
+ let fun3=(a,b)=>console.log('多个形参分别是：',a,b);
+ fun3(2,3);
+
+ console.log('---------------箭头函数-函数体只有一条语句的时候,花括号可以省略的-------------');
+ /*当{}省略的时候会会自动return当前语句或者表达式的结果*/
+ let fun5=()=>console.log('fun1()被调用了！');//相当于 let fun1=()=> return console.log('fun1()被调用了！');
+
+ fun5();
+ console.log(fun5());//查看返回值是什么，其实就是console.log(...)的返回值（既是undefined）
+
+ let fun6=()=>123;//相当于let fun6=()=>return 123;
+ console.log(fun6());//结果为123
+
+
+console.log('---------------箭头函数-函数体有多条语句的时候,花括号不能省略的-------------');
+/*需要手动指定返回结果，否则默认执行了 return value:undefined;*/
+ let fun4=(a,b)=>{let c=a+b;console.log(c);};
+     fun4(2,2);
+     console.log(fun4(2,2));//返回undefined
+
+ let fun7=(a,b)=>{let c=a+b;return c; };
+ console.log(fun7(3,3));//返回6
+
+ /*4、箭头函数没有自己的this，而且this不是调用的时候决定的，而是定义的时候处在的上下文对象就是它this
+* 扩展理解：箭头函数的this看外层的是否有函数
+* 如果有，外层函数的this就是内部函数的this
+* 如果没有，则this就是window*/
+ console.log('----------箭头函数的this指向问题---------------------')
+ let  btn1=document.getElementById('btn1');
+ let  btn2=document.getElementById('btn2');
+ btn1.onclick=function(){
+     console.log(this);//是btn1调用的，所以this就是btn1
+ };
+ btn2.onclick=()=>console.log(this);//外层没有函数了，所以为window
+
+ let  obj4={
+
+     username1:'csh',
+     test:() =>{
+
+         btn2.onclick=()=>console.log(this);
+
+     }
+
+ };
+obj4.test();//window
+
+
+ /*let  obj5={
+
+     username1:'csh',
+     test:function(){
+
+         btn1.onclick=()=>console.log(this);
+
+     }
+
+ };
+ obj5.test();//obj5{}
+*/
+
+
+</script>
+</body>
+</html>
